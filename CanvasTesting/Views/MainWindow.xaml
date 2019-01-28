@@ -1,0 +1,60 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:CanvasTesting.ViewModels;assembly=CanvasTesting"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:v ="clr-namespace:CanvasTesting.Views;assembly=CanvasTesting"
+        Icon="resm:CanvasTesting.Assets.avalonia-logo.ico"
+        Title="CanvasTesting"
+        Width="400"
+        Height="500">
+    <Window.Resources>
+        <sys:String x:Key="Format">Bounds:{0}</sys:String>
+    </Window.Resources>
+    <!--<Window.Styles>
+        <Style Selector="v:Star">
+            <Setter Property="Stroke" Value="Silver"/>
+        </Style>
+    </Window.Styles>-->
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+    <DockPanel>
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="83*"/>
+                <ColumnDefinition Width="7*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0">Sides</TextBlock>
+            <Slider Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Minimum="3" Maximum="30" Value="{Binding Sides}"/>
+            <TextBox Grid.Row="0" Grid.Column="2" Text="{Binding Sides}"/>
+            <TextBlock Grid.Row="1" Grid.Column="0">Radius</TextBlock>
+            <Slider Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Minimum="0" Maximum="300" Value="{Binding Radius}"/>
+            <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding Radius}"/>
+            <TextBlock Grid.Row="2" Grid.Column="0">Angle</TextBlock>
+            <Slider Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Minimum="0" Maximum="360" Value="{Binding Angle}"/>
+            <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding Angle}"/>
+        </Grid>
+        <!--<TextBlock DockPanel.Dock="Bottom" Text="{Binding CanvasBounds, StringFormat={StaticResource Format}}"/>-->
+        <v:Star Background="Black" Points="{Binding Sides}" Radius="{Binding Radius}" Stroke="Blue" DrawMode="Any"/>
+        <!--<ItemsControl Items="{Binding Lines}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas Background="Black">
+                        
+                    </Canvas>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.DataTemplates>
+                <DataTemplate>
+                    <Line StartPoint="{Binding Start}" EndPoint="{Binding End}" Stroke="Silver" StrokeThickness="3"/>
+                </DataTemplate>
+            </ItemsControl.DataTemplates>
+        </ItemsControl>-->
+    </DockPanel>
+</Window>

@@ -1,0 +1,20 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:CanvasTesting"
+             xmlns:v="clr-namespace:CanvasTesting.Views"
+             x:Class="CanvasTesting.Views.Star">
+    <DockPanel Name="Container">
+        <ItemsControl Items="{Binding $parent[StackPanel].DataContext.Lines}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas Background="{Binding $parent[DockPanel].DataContext.Background}"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.DataTemplates>
+                <DataTemplate>
+                    <Line StartPoint="{Binding Start}" EndPoint="{Binding End}" Stroke="{Binding $parent[DockPanel].DataContext.Stroke}" StrokeThickness="3"/>
+                </DataTemplate>
+            </ItemsControl.DataTemplates>
+        </ItemsControl>
+    </DockPanel>
+</UserControl>
