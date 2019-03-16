@@ -4,7 +4,7 @@
              xmlns:v="clr-namespace:CanvasTesting.Views"
              x:Class="CanvasTesting.Views.Star">
     <DockPanel Name="Container">
-        <ItemsControl Items="{Binding $parent[StackPanel].DataContext.Lines}">
+        <ItemsControl Items="{Binding Lines}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Canvas Background="{Binding $parent[DockPanel].DataContext.Background}"/>

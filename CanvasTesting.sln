@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CanvasTesting", "CanvasTesting\CanvasTesting.csproj", "{6042D6D3-AC4F-41BB-84C4-A4015A08260C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CanvasTesting", "CanvasTesting\CanvasTesting.csproj", "{6042D6D3-AC4F-41BB-84C4-A4015A08260C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{98686678-0629-44DF-BCE5-81CD04DC64DC}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

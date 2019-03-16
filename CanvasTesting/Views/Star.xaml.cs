@@ -2,6 +2,7 @@
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
+using Avalonia.Styling;
 using CanvasTesting.ViewModels;
 using ReactiveUI;
 using System;
@@ -26,22 +27,17 @@ namespace CanvasTesting.Views
             set => SetValue(StrokeProperty, value);
         }
 
-        public static readonly DirectProperty<Star, uint> PointsProperty = AvaloniaProperty.RegisterDirect<Star, uint>(
-            nameof(Points),
-            o => o.Points,
-            (o, v) => o.Points = v, unsetValue: 3);
-
-        private uint points = 3;
+        public static readonly StyledProperty<uint> PointsProperty = AvaloniaProperty.Register<Star, uint>(nameof(Points),3);
         public uint Points
         {
-            get => points;
+            get => GetValue(PointsProperty);
             set
             {
                 if (value < 3) throw new ArgumentOutOfRangeException(nameof(value), value, "Points Cannot be less than 3. Actual {0}.");
-                if (points != value)
+                if (Points != value)
                 {
                     List<LinePointsViewModel> old = Lines;
-                    SetAndRaise(PointsProperty, ref points, value);
+                    this.SetValue(PointsProperty, value);
                     this.RaisePropertyChanged(LinesProperty, old, Lines);
                 }
             }
@@ -93,71 +89,71 @@ namespace CanvasTesting.Views
             get
             {
                 List<LinePointsViewModel> list = new List<LinePointsViewModel>();
-                var listPoints = Enumerable.Range(0, (int)points).Select(i => new Point(GenX(i), GenY(i))).ToList();
+                var listPoints = Enumerable.Range(0, (int)Points).Select(i => new Point(GenX(i), GenY(i))).ToList();
 
-                if (points % 4 == 0 && drawMode.HasFlag(DrawModes.Square))
+                if (Points % 4 == 0 && drawMode.HasFlag(DrawModes.Square))
                 {
-                    foreach (int i in Enumerable.Range(0, (int)points))
+                    foreach (int i in Enumerable.Range(0, (int)Points))
                     {
                         list.Add(new LinePointsViewModel
                         {
                             Start = listPoints[i],
-                            End = listPoints[(i + (int)points / 4) % (int)points]
+                            End = listPoints[(i + (int)Points / 4) % (int)Points]
                         });
                     }
                 }
-                else if (points % 3 == 0 && drawMode.HasFlag(DrawModes.Triangle))
+                else if (Points % 3 == 0 && drawMode.HasFlag(DrawModes.Triangle))
                 {
-                    foreach (int i in Enumerable.Range(0, (int)points))
+                    foreach (int i in Enumerable.Range(0, (int)Points))
                     {
                         list.Add(new LinePointsViewModel
                         {
                             Start = listPoints[i],
-                            End = listPoints[(int)(i + points / 3) % (int)points]
+                            End = listPoints[(int)(i + Points / 3) % (int)Points]
                         });
                     }
                 }
-                else if (points % 2 == 0 && drawMode.HasFlag(DrawModes.PassTwo))
+                else if (Points % 2 == 0 && drawMode.HasFlag(DrawModes.PassTwo))
                 {
-                    foreach (int i in Enumerable.Range(0, (int)points))
+                    foreach (int i in Enumerable.Range(0, (int)Points))
                     {
                         list.Add(new LinePointsViewModel
                         {
                             Start = listPoints[i],
-                            End = listPoints[(i + 3) % (int)points]
+                            End = listPoints[(i + 3) % (int)Points]
                         });
                     }
                 }
                 else if (drawMode.HasFlag(DrawModes.Oppisite))
                 {
-                    foreach (int i in Enumerable.Range(0, (int)points))
+                    foreach (int i in Enumerable.Range(0, (int)Points))
                     {
                         list.Add(new LinePointsViewModel
                         {
                             Start = listPoints[i],
-                            End = listPoints[(i + (int)points / 2) % (int)points]
+                            End = listPoints[(i + (int)Points / 2) % (int)Points]
                         });
                     }
                 }
                 else if (drawMode.HasFlag(DrawModes.PassTwo))
                 {
-                    foreach (int i in Enumerable.Range(0, (int)points))
+                    foreach (int i in Enumerable.Range(0, (int)Points))
                     {
                         list.Add(new LinePointsViewModel
                         {
                             Start = listPoints[i],
-                            End = listPoints[(i + 3) % (int)points]
+                            End = listPoints[(i + 3) % (int)Points]
                         });
                     }
                 }
                 else if (drawMode.HasFlag(DrawModes.PassOne))
                 {
-                    foreach (int i in Enumerable.Range(0, (int)points))
+                    foreach (int i in Enumerable.Range(0, (int)Points))
                     {
                         list.Add(new LinePointsViewModel
                         {
                             Start = listPoints[i],
-                            End = listPoints[(i + 2) % (int)points]
+                            End = listPoints[(i + 2) % (int)Points]
                         });
                     }
                 }
@@ -166,8 +162,8 @@ namespace CanvasTesting.Views
         }
 
 
-        private double GenX(int ctr) => radius * Cos(2 * PI * ctr / points) + Bounds.Center.X;
-        private double GenY(int ctr) => radius * Sin(2 * PI * ctr / points) + Bounds.Center.Y;
+        private double GenX(int ctr) => radius * Cos(2 * PI * ctr / Points) + Bounds.Center.X;
+        private double GenY(int ctr) => radius * Sin(2 * PI * ctr / Points) + Bounds.Center.Y;
 
         private void InitializeComponent()
         {

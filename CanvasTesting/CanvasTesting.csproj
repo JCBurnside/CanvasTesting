@@ -15,12 +15,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Views\Star.xaml" />
-    <None Remove="Views\UserControl1.xaml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="0.7.0" />
-    <PackageReference Include="Avalonia.Desktop" Version="0.7.0" />
-    <PackageReference Include="Avalonia.ReactiveUI" Version="0.7.0" />
+    <PackageReference Include="Avalonia" Version="0.7.1-cibuild0001679-beta" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.7.1-cibuild0001679-beta" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="0.7.1-cibuild0001679-beta" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Views\Star.xaml.cs">
@@ -29,9 +28,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Views\Star.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\UserControl1.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
